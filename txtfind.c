@@ -20,21 +20,22 @@ int getFirstWord(char w[], char* op){
 }
 
 int getWord(char w[]){
-    char c = getchar();
+    char cr = getchar();
     int i = 0;
-    while(c!=EOF && c!='\n' && c!=' ' && c!='\t' && i<WORD){
-        w[i] = c;
-        c = getchar();
+    while(cr!=EOF && cr!='\n' && cr!=' ' && cr!='\t' && i<WORD){
+        w[i] = cr;
+        cr = getchar();
+        
 //        if(c==EOF || c=='\n' || c==' ' || c=='\t'){
 //            w[i] = c;
 //        }
         i++;
     }
-    w[i] = '\0';
+    if(i>0) {
+        w[i] = '\0';
+    }
     return i;
 }
-
-
 
 
 int getLine(char s[]){
@@ -90,7 +91,6 @@ int substring2(char *str1, char *str2){
     int flag=0;
 
     while(i<len1){
-
         if( str1[i]==str2[j]){
             i++;
             j++;
@@ -102,18 +102,16 @@ int substring2(char *str1, char *str2){
     if(j==len2){
         flag=1;
     }
-
     return flag;
 }
 
-int similar( char*s, char* t, int n){
-    int len2= strlen(s);
-    int len1= strlen(t);
-    int ans= len2-len1;
-    if( substring2(s,t)==0){ return 0; }
-    else{ if(ans>n){ return 0; }
-        else{ return 1; }
-    }
+int similar(char *s, char *t, int n) {
+    int len2 = strlen(s);
+    int len1 = strlen(t);
+    int ans = len2 - len1;
+    if (substring2(s, t) == 0) { return 0; }
+    else if (ans > n) { return 0; }
+    return 1;
 }
 
 
@@ -128,18 +126,26 @@ void print_lines(char* str) {
 
 void print_similar_words(char* str) {
     char someWord[WORD];
-    int ans = 0;
-    while(getWord(someWord)){
+    int ans, i;
+    while (1) {
+        i = getWord(someWord);
+        if(i==0) break;
         ans = similar(someWord, str, 1);
-        if(ans == 1 ){
+        //printf("|%d + %s |\n",ans, someWord);
+//        for (int j = 0; j <i ; ++j) {
+//            printf("%c, ",someWord[j]);
+//        }
+//        printf("\n");
+        if (ans == 1) {
             printf("%s\n", someWord);
         }
     }
 }
 
 
+
 int main(){
-    int i = 0, j = 0;
+    int i = 0, j = 0, ans;
     char firstWord[WORD];
     char someLine[LINE], operation;
     char* ptr = &operation;
@@ -154,7 +160,7 @@ int main(){
 //    }
 //    printf("\n");
 
-
+//
     switch (operation) {
         case 'a':
             print_lines(firstWord);
@@ -167,10 +173,7 @@ int main(){
         default:
             printf("Nothing to do");
     }
-    j = getLine(someLine);
-    for (int k = 0; k < j; ++k) {
-        printf("%c",someLine[k]);
-    }
+
 //    printf("\n");
 //    printf("%d",j);
 //    printf("\n");
