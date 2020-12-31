@@ -1,8 +1,7 @@
-cat b
+cat a
 
-this is a text file 
+this is a text file
 looking for the word cat
 the program should print also cats
-after cats ccat and lcat are printed
-the program shouldn’t print 
-the word caat
+and crat and lcat but it shouldn’t
+print the word caats

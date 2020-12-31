@@ -5,11 +5,8 @@
 int ans[SIZE];
 int arr[SIZE] = {0};
 
-/**
- * Moves the array to the right - by i elements from pointer location.
- * @param arr - Pointer to an element from an array
- * @param i - The number of elements that need to be moved
- */
+
+// Moves the array to the right - by i elements from pointer location
 void shift_element(int *arr, int i) {
     while (i > 0) {
         *(arr + i) = *(arr + i - 1);
@@ -17,11 +14,8 @@ void shift_element(int *arr, int i) {
     }
 }
 
-/**
- * Sorting given element to an array.
- * @param arr  - The container array
- * @param len - The length in the array we want to sort
- */
+
+//Sorting given element to an array
 void insertion_sort(int *arr, int len) {
     int flag = 0;
     for (int i = 0; i <= len; ++i) {
@@ -44,9 +38,12 @@ int main() {
     }
 
     //Entering Size numbers to an arr
-    printf("Enter %d numbers: ",SIZE);
     for (int i = 0; i < SIZE; ++i) {
-        scanf("%d", (arr+i));
+           int x=0;
+    
+           scanf("%d", &x);
+           *(arr+i)=x;
+          
 
     }
     printf("\n");
@@ -56,6 +53,7 @@ int main() {
         insertion_sort(arr + i, i);
     }
 
+   
     //Printing the final array
     for (int j = 0; j < SIZE; ++j) {
         if(j==SIZE-1){//Printing the last index
@@ -63,6 +61,7 @@ int main() {
             break;
         }
         printf("%d,", *(ans+j));
+
     }
     return 0;
 }

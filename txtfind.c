@@ -9,31 +9,10 @@ int getFirstWord(char w[], char* op){
     while(c!=EOF && c!='\n' && c!=' ' && c!='\t' && i<WORD){
         w[i] = c;
         c = getchar();
-//        if(c==EOF || c=='\n' || c==' ' || c=='\t'){
-//            w[i] = c;
-//        }
         i++;
     }
-    *op = getchar();
+    *op = getchar(); //getting the operation char from input
     w[i] = '\0';
-    return i;
-}
-
-int getWord(char w[]){
-    char cr = getchar();
-    int i = 0;
-    while(cr!=EOF && cr!='\n' && cr!=' ' && cr!='\t' && i<WORD){
-        w[i] = cr;
-        cr = getchar();
-        
-//        if(c==EOF || c=='\n' || c==' ' || c=='\t'){
-//            w[i] = c;
-//        }
-        i++;
-    }
-    if(i>0) {
-        w[i] = '\0';
-    }
     return i;
 }
 
@@ -51,7 +30,7 @@ int getLine(char s[]){
     return i;
 }
 
-
+//used to find a specific word in line.
 int substring1(char *str1, char *str2) {
     int len2 = strlen(str2);
     int len1 = strlen(str1);
@@ -83,6 +62,7 @@ int substring1(char *str1, char *str2) {
     return flag;
 }
 
+//find string a line as a substring
 int substring2(char *str1, char *str2){
     int len2= strlen(str2);
     int len1= strlen(str1);
@@ -105,6 +85,7 @@ int substring2(char *str1, char *str2){
     return flag;
 }
 
+
 int similar(char *s, char *t, int n) {
     int len2 = strlen(s);
     int len1 = strlen(t);
@@ -124,19 +105,17 @@ void print_lines(char* str) {
     }
 }
 
-void print_similar_words(char* str) {
+
+
+void print_similar_words(char* str)
+{
     char someWord[WORD];
-    int ans, i;
-    while (1) {
-        i = getWord(someWord);
-        if(i==0) break;
-        ans = similar(someWord, str, 1);
-        //printf("|%d + %s |\n",ans, someWord);
-//        for (int j = 0; j <i ; ++j) {
-//            printf("%c, ",someWord[j]);
-//        }
-//        printf("\n");
-        if (ans == 1) {
+
+    while (fscanf(stdin," %s", someWord)==1)
+    {
+        int print = similar(someWord, str, 1);
+        if (print == 1)
+        {
             printf("%s\n", someWord);
         }
     }
@@ -145,13 +124,10 @@ void print_similar_words(char* str) {
 
 
 int main(){
-    int i = 0, j = 0, ans;
     char firstWord[WORD];
-    char someLine[LINE], operation;
+    char operation;
     char* ptr = &operation;
-    i = getFirstWord(firstWord, ptr);
-    printf("%s\n",firstWord);
-    printf("%c\n",operation);
+    getFirstWord(firstWord, ptr);
 //    while(getLine(someLine)>0){
 //        printf("%s\n",someLine);
 //    }
