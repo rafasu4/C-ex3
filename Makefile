@@ -3,10 +3,10 @@ FLAGS = -Wall -g
 
 all: isort txtfind
 
-isort: isort.c
+isort: isort.c isort.h
 	$(CC) $(FLAGS) isort.c -o isort
 	
-txtfind:txtfind.c
+txtfind:txtfind.c txtfind.h
 	$(CC) $(FLAGS) txtfind.c -o txtfind
 	
  	
