@@ -64,6 +64,7 @@ int main() {
         printf("%d,", *(ans+j));
 
     }
+    printf("\n");
     return 0;
 }
 
